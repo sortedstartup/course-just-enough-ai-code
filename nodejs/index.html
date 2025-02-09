@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Search</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .content-toggle {
+            transition: transform 0.2s;
+        }
+        .content-toggle.expanded {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-2xl mb-4">Vector Search</h1>
+        
+        <!-- Generate Embeddings Section -->
+        <div class="mb-6">
+            <button hx-post="/generate_embeddings"
+                    hx-target="#embedding-status"
+                    hx-swap="innerHTML"
+                    class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg w-full mb-2">
+                Generate Embeddings
+            </button>
+            <div id="embedding-status"></div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="mb-4">
+            <input type="text" 
+                   name="query" 
+                   class="border p-2 w-full mb-2 rounded-lg"
+                   placeholder="Enter your search query">
+            <button hx-get="/search"
+                    hx-include="[name='query']"
+                    hx-target="#search-results"
+                    hx-swap="innerHTML"
+                    class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg w-full">
+                Search
+            </button>
+        </div>
+        
+        <!-- Template (moved outside of search-results) -->
+        <template id="search-template">
+            <div class="border rounded-lg p-4 mb-3 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <button class="content-toggle mr-2 focus:outline-none" onclick="toggleContent(this)">
+                            ▶
+                        </button>
+                        <h3 class="text-lg font-semibold text-gray-800"></h3>
+                    </div>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full">
+                        Score: <span class="similarity-score"></span>
+                    </span>
+                </div>
+                <div class="content hidden pl-6 text-gray-600 text-sm"></div>
+            </div>
+        </template>
+
+        <!-- Results -->
+        <div id="search-results" class="mt-4">
+            <!-- Search results will be inserted here by HTMX -->
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(button) {
+            const contentDiv = button.closest('div.border').querySelector('.content');
+            button.classList.toggle('expanded');
+            contentDiv.classList.toggle('hidden');
+        }
+
+        htmx.on('htmx:afterRequest', function(evt) {
+            if (evt.detail.target.id === 'search-results') {
+                try {
+                    const results = JSON.parse(evt.detail.xhr.response);
+                    const container = document.getElementById('search-results');
+                    container.innerHTML = ''; // Clear previous results
+                    
+                    results.forEach(result => {
+                        const template = document.getElementById('search-template');
+                        const clone = template.content.cloneNode(true);
+                        
+                        // Set the title
+                        clone.querySelector('h3').textContent = result.doc.title;
+                        
+                        // Set the content
+                        clone.querySelector('.content').textContent = result.doc.content;
+                        
+                        // Set the similarity score
+                        clone.querySelector('.similarity-score').textContent = 
+                            (result.similarity_score * 100).toFixed(0) + '%';
+                        
+                        container.appendChild(clone);
+                    });
+                } catch (error) {
+                    console.error('Error parsing results:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
