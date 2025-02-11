@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: mcr.microsoft.com/devcontainers/javascript-node:20
+    image: ghcr.io/sortedstartup/docker-images/dev-go-npm-grpc:jan-26-2025-2
     volumes:
       - ..:/workspace:cached
       - node_modules:/workspace/nodejsx/node_modules
@@ -14,8 +14,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     working_dir: /workspace/nodejsx
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     depends_on:
       - db
 
@@ -28,8 +28,8 @@ services:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
 
 volumes:
   postgres-data:
