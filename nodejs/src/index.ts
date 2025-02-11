@@ -41,7 +41,6 @@ app.get('/', serveStatic({ path: './index.html' }))
 
 // Search API
 app.get('/search', (c) => {
-    
     const results = [
         {
             doc: {
@@ -111,4 +110,4 @@ async function initialize() {
     }
 }
 
-initialize() 
+initialize()
