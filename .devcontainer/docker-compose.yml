@@ -5,7 +5,6 @@ services:
     image: ghcr.io/sortedstartup/docker-images/dev-go-npm-grpc:jan-26-2025-2
     volumes:
       - ..:/workspace:cached
-      - node_modules:/workspace/nodejsx/node_modules
     command: sleep infinity
     environment:
       - POSTGRES_HOST=db
@@ -13,7 +12,6 @@ services:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    working_dir: /workspace/nodejsx
     # ports:
     #   - "3000:3000"
     depends_on:
