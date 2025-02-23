@@ -1,0 +1,212 @@
+[
+    {
+        "movie_id": "tt15354916",
+        "movie_name": "Jawan",
+        "year": "2023",
+        "genre": "Action, Thriller",
+        "overview": "A high-octane action thriller which outlines the emotional journey of a man who is set to rectify the wrongs in the society.",
+        "director": "Atlee",
+        "cast": "Shah Rukh Khan, Nayanthara, Vijay Sethupathi, Deepika Padukone",
+        "id": 0
+    },
+    {
+        "movie_id": "tt15748830",
+        "movie_name": "Jaane Jaan",
+        "year": "2023",
+        "genre": "Crime, Drama, Mystery",
+        "overview": "A single mother and her daughter who commit a crime and a neighbor who helps them cover it up amidst a police investigation.",
+        "director": "Sujoy Ghosh",
+        "cast": "Kareena Kapoor, Jaideep Ahlawat, Vijay Varma, Saurabh Sachdeva",
+        "id": 1
+    },
+    {
+        "movie_id": "tt11663228",
+        "movie_name": "Jailer",
+        "year": "2023",
+        "genre": "Action, Comedy, Crime",
+        "overview": "A retired jailer goes on a manhunt to find his son's killers. But the road leads him to a familiar, albeit a bit darker place. Can he emerge from this complex situation successfully?",
+        "director": "Nelson Dilipkumar",
+        "cast": "Rajinikanth, Mohanlal, Shivarajkumar, Jackie Shroff",
+        "id": 2
+    },
+    {
+        "movie_id": "tt14993250",
+        "movie_name": "Rocky Aur Rani Kii Prem Kahaani",
+        "year": "2023",
+        "genre": "Comedy, Drama, Family",
+        "overview": "Flamboyant Punjabi Rocky and intellectual Bengali journalist Rani fall in love despite their differences. After facing family opposition, they decide to live with each other's families for three months before getting married.",
+        "director": "Karan Johar",
+        "cast": "Ranveer Singh, Alia Bhatt, Dharmendra, Shabana Azmi",
+        "id": 3
+    },
+    {
+        "movie_id": "tt15732324",
+        "movie_name": "OMG 2",
+        "year": "2023",
+        "genre": "Comedy, Drama",
+        "overview": "An unhappy civilian asks the court to mandate comprehensive education in schools in a dramatic yet amusing courtroom play.",
+        "director": "Amit Rai",
+        "cast": "Pankaj Tripathi, Akshay Kumar, Yami Gautam, Pawan Malhotra",
+        "id": 4
+    },
+    {
+        "movie_id": "tt18266472",
+        "movie_name": "Sukhee",
+        "year": "2023",
+        "genre": "Drama",
+        "overview": "Much to the dismay of her husband, a middle-class housewife, known for her rebellious attitude in high school, decides to attend her class reunion.",
+        "director": "Sonal Joshi",
+        "cast": "Shilpa Shetty Kundra, Amit Sadh, Chaitannya Choudhry, Kusha Kapila",
+        "id": 5
+    },
+    {
+        "movie_id": "tt18561736",
+        "movie_name": "The Great Indian Family",
+        "year": "2023",
+        "genre": "Family",
+        "overview": "Ved Vyas Tripathi, aka Bhajan Kumar, is a devout Hindu man who faces an identity crisis and a personal dilemma when he discovers he is actually a Muslim by birth.",
+        "director": "Vijay Krishna Acharya",
+        "cast": "Alka Amin, Bhuvan Arora, Manushi Chhillar, Srishti Dixit",
+        "id": 6
+    },
+    {
+        "movie_id": "tt3691740",
+        "movie_name": "The BFG",
+        "year": "2016",
+        "genre": "Adventure, Family, Fantasy",
+        "overview": "An orphan little girl befriends a benevolent giant who takes her to Giant Country, where they attempt to stop the man-eating giants that are invading the human world.",
+        "director": "Steven Spielberg",
+        "cast": "Mark Rylance, Ruby Barnhill, Penelope Wilton, Jemaine Clement",
+        "id": 7
+    },
+    {
+        "movie_id": "tt12844910",
+        "movie_name": "Pathaan",
+        "year": "2023",
+        "genre": "Action, Adventure, Thriller",
+        "overview": "An Indian agent races against a doomsday clock as a ruthless mercenary, with a bitter vendetta, mounts an apocalyptic attack against the country.",
+        "director": "Siddharth Anand",
+        "cast": "Shah Rukh Khan, Deepika Padukone, John Abraham, Dimple Kapadia",
+        "id": 8
+    },
+    {
+        "movie_id": "tt15464390",
+        "movie_name": "Mastaney",
+        "year": "2023",
+        "genre": "Action, Drama, History",
+        "overview": "Set in 1739, Nadar Shah's undefeated army was attacked by Sikh Rebellions. Nadar demands to arrest them but it doesn't work out. Five ordinary men are hired to play Sikh Rebellions but over time they learn what Sikhs are.",
+        "director": "Sharan Art",
+        "cast": "Tarsem Jassar, Simi Chahal, Gurpreet Ghuggi, Karamjit Anmol",
+        "id": 9
+    },
+    {
+        "movie_id": "tt1187043",
+        "movie_name": "3 Idiots",
+        "year": "2009",
+        "genre": "Comedy, Drama",
+        "overview": "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them \"idiots\".",
+        "director": "Rajkumar Hirani",
+        "cast": "Aamir Khan, Madhavan, Mona Singh, Sharman Joshi",
+        "id": 10
+    },
+    {
+        "movie_id": "tt14914988",
+        "movie_name": "Satyaprem Ki Katha",
+        "year": "2023",
+        "genre": "Comedy, Drama, Musical",
+        "overview": "A middle-class boy in Ahmedabad, Satyaprem falling in one-sided love with Katha, who is coping with her breakup with Tapan. Through the journey, they discover each other's life and complement in accomplishing what was left halfway.",
+        "director": "Sameer Vidwans",
+        "cast": "Kartik Aaryan, Kiara Advani, Supriya Pathak, Gajraj Rao",
+        "id": 11
+    },
+    {
+        "movie_id": "tt3741834",
+        "movie_name": "Lion",
+        "year": "2016",
+        "genre": "Biography, Drama",
+        "overview": "A five-year-old Indian boy is adopted by an Australian couple after getting lost hundreds of kilometers from home. 25 years later, he sets out to find his lost family.",
+        "director": "Garth Davis",
+        "cast": "Dev Patel, Nicole Kidman, Rooney Mara, Sunny Pawar",
+        "id": 12
+    },
+    {
+        "movie_id": "tt13131610",
+        "movie_name": "Bholaa Shankar",
+        "year": "2023",
+        "genre": "Action, Drama",
+        "overview": "A doting brother tries to hunt down notorious criminals who had harmed his sister.",
+        "director": "Meher Ramesh",
+        "cast": "Chiranjeevi, Tamannaah Bhatia, Keerthy Suresh, Raghu Babu",
+        "id": 13
+    },
+    {
+        "movie_id": "tt22188452",
+        "movie_name": "Haddi",
+        "year": "2023",
+        "genre": "Crime, Drama",
+        "overview": "In this ZEE5 Original film, a transgender, Haddi moves to Delhi and joins a gang of transgenders and cross-dressers headed by an influential man. But is this move aspirational or driven by revenge?",
+        "director": "Akshat Ajay Sharma",
+        "cast": "Nawazuddin Siddiqui, Anurag Kashyap, Mohd. Zeeshan Ayyub, Resh Lamba",
+        "id": 14
+    },
+    {
+        "movie_id": "tt28568397",
+        "movie_name": "Friday Night Plan",
+        "year": "2023",
+        "genre": "Comedy, Drama",
+        "overview": "When their mother takes off on a business trip, two bickering brothers unite to secretly attend the hottest party of the year before she returns.",
+        "director": "Vatsal Neelakantan",
+        "cast": "Babil Khan, Amrith Jayan, Medha Rana, Aadhya Anand",
+        "id": 15
+    },
+    {
+        "movie_id": "tt21908676",
+        "movie_name": "Neeyat",
+        "year": "2023",
+        "genre": "Crime, Mystery, Thriller",
+        "overview": "When a mysterious murder takes place at exiled billionaire Ashish Kapoor's birthday getaway, detective Mira Rao must use all her skill to unravel devious motives as the suspects are Kapoor's close family and friends.",
+        "director": "Anu Menon",
+        "cast": "Vidya Balan, Ram Kapoor, Rahul Bose, Neeraj Kabi",
+        "id": 16
+    },
+    {
+        "movie_id": "tt15441054",
+        "movie_name": "Gadar 2",
+        "year": "2023",
+        "genre": "Action, Adventure, Drama",
+        "overview": "When Tara Singh goes missing during a skirmish and is believed to be captured in Pakistan, his son Jeete sets out to rescue him and enters a labyrinth from which they both must escape at all costs.",
+        "director": "Anil Sharma",
+        "cast": "Sunny Deol, Amrish Puri, Nana Patekar, Ameesha Patel",
+        "id": 17
+    },
+    {
+        "movie_id": "tt27542289",
+        "movie_name": "Por Thozhil",
+        "year": "2023",
+        "genre": "Action, Crime, Thriller",
+        "overview": "A bright but faint-hearted rookie cop has to overcome his fears in order to succeed in his first case which sees him partnered with a reclusive senior officer to catch a serial killer on the loose.",
+        "director": "Vignesh Raja, T. Senthil Paramasivam",
+        "cast": "R. Sarathkumar, Ashok Selvan, Nikhila Vimal, Sarath Babu",
+        "id": 18
+    },
+    {
+        "movie_id": "tt0454876",
+        "movie_name": "Life of Pi",
+        "year": "2012",
+        "genre": "Adventure, Drama, Fantasy",
+        "overview": "A young man who survives a disaster at sea is hurtled into an epic journey of adventure and discovery. While cast away, he forms an unexpected connection with another survivor: a fearsome Bengal tiger.",
+        "director": "Ang Lee",
+        "cast": "Suraj Sharma, Irrfan Khan, Adil Hussain, Tabu",
+        "id": 19
+    },
+    {
+        "movie_id": "tt0249371",
+        "movie_name": "Asoka",
+        "year": "2001",
+        "genre": "Action, Biography, Drama",
+        "overview": "The epic tale of King Asoka's life is recounted.",
+        "director": "Santosh Sivan",
+        "cast": "Shah Rukh Khan, Kareena Kapoor, Danny Denzongpa, Hrishitaa Bhatt",
+        "id": 20
+    }
+]

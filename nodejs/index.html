@@ -13,6 +13,27 @@
         .content-toggle.expanded {
             transform: rotate(90deg);
         }
+        /* Add spinner styles */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .htmx-request .spinner {
+            display: inline-block;
+        }
+        .htmx-request .button-text {
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body class="p-8">
@@ -24,8 +45,9 @@
             <button hx-post="/generate_embeddings"
                     hx-target="#embedding-status"
                     hx-swap="innerHTML"
-                    class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg w-full mb-2">
-                Generate Embeddings
+                    class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg w-full mb-2 flex items-center justify-center">
+                <span class="button-text">Generate Embeddings</span>
+                <div class="spinner"></div>
             </button>
             <div id="embedding-status"></div>
         </div>
@@ -40,8 +62,9 @@
                     hx-include="[name='query']"
                     hx-target="#search-results"
                     hx-swap="innerHTML"
-                    class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg w-full">
-                Search
+                    class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg w-full flex items-center justify-center">
+                <span class="button-text">Search</span>
+                <div class="spinner"></div>
             </button>
         </div>
         
@@ -79,7 +102,20 @@
         htmx.on('htmx:afterRequest', function(evt) {
             if (evt.detail.target.id === 'search-results') {
                 try {
-                    const results = JSON.parse(evt.detail.xhr.response);
+                    const response = evt.detail.xhr.response;
+                    const results = JSON.parse(response);
+                    
+                    // Check if it's an error response
+                    if (results.error) {
+                        const container = document.getElementById('search-results');
+                        container.innerHTML = `
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                                ${results.error}
+                            </div>
+                        `;
+                        return;
+                    }
+
                     const container = document.getElementById('search-results');
                     container.innerHTML = ''; // Clear previous results
                     
@@ -101,6 +137,12 @@
                     });
                 } catch (error) {
                     console.error('Error parsing results:', error);
+                    const container = document.getElementById('search-results');
+                    container.innerHTML = `
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            Failed to process search results
+                        </div>
+                    `;
                 }
             }
         });

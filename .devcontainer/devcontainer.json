@@ -1,5 +1,5 @@
 {
-    "name": "Dev Container",
+    "name": "Just enough ai",
     "dockerComposeFile": "./docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspace",
