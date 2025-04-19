@@ -58,8 +58,15 @@
                    name="query" 
                    class="border p-2 w-full mb-2 rounded-lg"
                    placeholder="Enter your search query">
+            <div class="flex items-center mb-2">
+                <input type="checkbox" 
+                       id="use-ollama" 
+                       name="use-ollama" 
+                       class="w-4 h-4 mr-2">
+                <label for="use-ollama" class="text-gray-600">Use Ollama (local model)</label>
+            </div>
             <button hx-get="/search"
-                    hx-include="[name='query']"
+                    hx-include="[name='query'],[name='use-ollama']"
                     hx-target="#search-results"
                     hx-swap="innerHTML"
                     class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg w-full flex items-center justify-center">

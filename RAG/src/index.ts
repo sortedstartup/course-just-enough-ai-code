@@ -72,43 +72,73 @@ app.get('/', serveStatic({ path: './index.html' }))
 app.get('/search', async (c) => {
     try {
         const query = c.req.query('query')
+        const useOllama = c.req.query('use-ollama') === 'on'
         
         if (!query) {
             return c.json({ error: 'Query parameter is required' }, 400)
         }
 
-        // Get embedding from Cloudflare AI API
-        const response = await fetch(
-            `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/baai/bge-large-en-v1.5`,
-            {
+        let queryEmbedding;
+        let embeddingField;
+        
+        if (useOllama) {
+            // Use Ollama for nomic embeddings
+            const response = await fetch('http://localhost:11434/api/embeddings', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${CLOUDFLARE_API_TOKEN}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ text: query })
+                body: JSON.stringify({
+                    model: 'nomic-embed-text',
+                    prompt: query
+                })
+            })
+
+            const data = await response.json()
+            
+            if (!data.embedding) {
+                console.error('Failed to generate embedding for search query:', data)
+                return c.json({ error: 'Failed to process search query with Ollama' }, 500)
             }
-        )
 
-        const data = await response.json()
-        
-        if (!data.success || !data.result?.data?.[0]) {
-            console.error('Failed to generate embedding for search query:', data)
-            return c.json({ error: 'Failed to process search query' }, 500)
+            // Format the embedding array as a pgvector string
+            queryEmbedding = `[${data.embedding.join(',')}]`
+            embeddingField = 'nomic_embedding'
+        } else {
+            // Use Cloudflare for embeddings (existing code)
+            const response = await fetch(
+                `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/baai/bge-large-en-v1.5`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${CLOUDFLARE_API_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: query })
+                }
+            )
+
+            const data = await response.json()
+            
+            if (!data.success || !data.result?.data?.[0]) {
+                console.error('Failed to generate embedding for search query:', data)
+                return c.json({ error: 'Failed to process search query' }, 500)
+            }
+
+            // Format the embedding array as a pgvector string
+            queryEmbedding = `[${data.result.data[0].join(',')}]`
+            embeddingField = 'embedding'
         }
-
-        // Format the embedding array as a pgvector string
-        const queryEmbedding = `[${data.result.data[0].join(',')}]`
 
         // Search for the top 2 most similar documents using cosine distance
         const searchQuery = `
             SELECT 
                 title,
                 content,
-                1 - (embedding <=> $1::vector) as similarity_score
+                1 - (${embeddingField} <=> $1::vector) as similarity_score
             FROM documents
-            WHERE embedding IS NOT NULL
-            ORDER BY embedding <=> $1::vector
+            WHERE ${embeddingField} IS NOT NULL
+            ORDER BY ${embeddingField} <=> $1::vector
             LIMIT 2
         `
         const results = await pool.query(searchQuery, [queryEmbedding])
@@ -151,39 +181,76 @@ answer this question : "${query}"
 
         console.log('Prompt sent to LLM:', prompt) // Log the prompt
 
-        // Send the prompt to the Cloudflare AI API model
-        const answerResponse = await fetch(
-            `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/llama-4-scout-17b-16e-instruct`,
-            {
+        let answerData;
+        
+        if (useOllama) {
+            // Use Ollama's gemma3 for generation
+            const answerResponse = await fetch('http://localhost:11434/api/generate', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${CLOUDFLARE_API_TOKEN}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ prompt })
+                body: JSON.stringify({
+                    model: 'gemma3',
+                    prompt: prompt
+                })
+            })
+            
+            answerData = await answerResponse.json()
+            
+            if (!answerData.response) {
+                console.error('Failed to generate answer with Ollama:', answerData)
+                return c.json({ error: 'Failed to generate answer with Ollama' }, 500)
             }
-        )
+            
+            // Use the response field from Ollama
+            let answer = answerData.response.trim()
+            
+            // Validate the AI response
+            if (!answer || answer.includes('No document provided') || answer.includes('There are no documents')) {
+                return c.json({ error: 'AI response was invalid or incomplete' }, 500)
+            }
+            
+            // Replace \n with <br/>
+            answer = answer.replace(/\n/g, '<br/>')
+            
+            // Return the answer
+            return c.json({ answer })
+        } else {
+            // Use Cloudflare for generation (existing code)
+            const answerResponse = await fetch(
+                `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/llama-4-scout-17b-16e-instruct`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${CLOUDFLARE_API_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt })
+                }
+            )
 
-        const answerData = await answerResponse.json()
+            answerData = await answerResponse.json()
 
-        console.log('Output from LLM:', answerData) // Log the output
+            console.log('Output from LLM:', answerData) // Log the output
 
-        if (!answerData.success || !answerData.result?.response) {
-            console.error('Failed to generate answer:', answerData)
-            return c.json({ error: 'Failed to generate answer' }, 500)
+            if (!answerData.success || !answerData.result?.response) {
+                console.error('Failed to generate answer:', answerData)
+                return c.json({ error: 'Failed to generate answer' }, 500)
+            }
+
+            // Validate the AI response
+            let answer = answerData.result.response.trim()
+            if (!answer || answer.includes('No document provided') || answer.includes('There are no documents')) {
+                return c.json({ error: 'AI response was invalid or incomplete' }, 500)
+            }
+
+            // Replace \n with <br/>
+            answer = answer.replace(/\n/g, '<br/>')
+
+            // Return the answer
+            return c.json({ answer })
         }
-
-        // Validate the AI response
-        let answer = answerData.result.response.trim()
-        if (!answer || answer.includes('No document provided') || answer.includes('There are no documents')) {
-            return c.json({ error: 'AI response was invalid or incomplete' }, 500)
-        }
-
-        // Replace \n with <br/>
-        answer = answer.replace(/\n/g, '<br/>')
-
-        // Return the answer
-        return c.json({ answer })
     } catch (error) {
         console.error('Search error:', error)
         return c.json({ error: 'Search failed' }, 500)
@@ -230,17 +297,40 @@ app.post('/generate_embeddings', async (c) => {
 
             // Format the embedding array as a pgvector string
             const embeddingString = `[${data.result.data[0].join(',')}]`
+            
+            // Get Nomic embedding from Ollama
+            const nomicResponse = await fetch('http://localhost:11434/api/embeddings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: "nomic-embed-text",
+                    prompt: content
+                })
+            })
+            
+            const nomicData = await nomicResponse.json()
+            
+            if (!nomicData.embedding) {
+                console.error(`Failed to generate Nomic embedding for file ${file}:`, nomicData)
+                continue
+            }
+            
+            // Format the Nomic embedding array as a pgvector string
+            const nomicEmbeddingString = `[${nomicData.embedding.join(',')}]`
 
             // Insert into database
             const query = `
-                INSERT INTO documents (title, content, embedding)
-                VALUES ($1, $2, $3::vector)
+                INSERT INTO documents (title, content, embedding, nomic_embedding)
+                VALUES ($1, $2, $3::vector, $4::vector)
                 RETURNING id
             `
             const result = await pool.query(query, [
                 file,
                 content,
-                embeddingString
+                embeddingString,
+                nomicEmbeddingString
             ])
 
             processedCount++
