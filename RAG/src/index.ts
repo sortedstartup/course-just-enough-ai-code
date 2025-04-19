@@ -191,8 +191,9 @@ answer this question : "${query}"
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: 'gemma3',
-                    prompt: prompt
+                    model: 'gemma3:1b',
+                    prompt: prompt,
+                    stream: false
                 })
             })
             
