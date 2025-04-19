@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG (Retrieval Augmented Search) Search</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .content-toggle {
+            transition: transform 0.2s;
+        }
+        .content-toggle.expanded {
+            transform: rotate(90deg);
+        }
+        /* Add spinner styles */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .htmx-request .spinner {
+            display: inline-block;
+        }
+        .htmx-request .button-text {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-2xl mb-4">Vector Search</h1>
+        
+        <!-- Generate Embeddings Section -->
+        <div class="mb-6">
+            <button hx-post="/generate_embeddings"
+                    hx-target="#embedding-status"
+                    hx-swap="innerHTML"
+                    class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg w-full mb-2 flex items-center justify-center">
+                <span class="button-text">Generate Embeddings</span>
+                <div class="spinner"></div>
+            </button>
+            <div id="embedding-status"></div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="mb-4">
+            <input type="text" 
+                   name="query" 
+                   class="border p-2 w-full mb-2 rounded-lg"
+                   placeholder="Enter your search query">
+            <button hx-get="/search"
+                    hx-include="[name='query']"
+                    hx-target="#search-results"
+                    hx-swap="innerHTML"
+                    class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg w-full flex items-center justify-center">
+                <span class="button-text">Search</span>
+                <div class="spinner"></div>
+            </button>
+        </div>
+        
+        <!-- Template (moved outside of search-results) -->
+        <template id="search-template">
+            <div class="border rounded-lg p-4 mb-3 hover:shadow-md transition-shadow">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center">
+                        <button class="content-toggle mr-2 focus:outline-none" onclick="toggleContent(this)">
+                            ▶
+                        </button>
+                        <h3 class="text-lg font-semibold text-gray-800"></h3>
+                    </div>
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded-full">
+                        Score: <span class="similarity-score"></span>
+                    </span>
+                </div>
+                <div class="content hidden pl-6 text-gray-600 text-sm"></div>
+            </div>
+        </template>
+
+        <!-- Results -->
+        <div id="search-results" class="mt-4">
+            <!-- Search results will be inserted here by HTMX -->
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(button) {
+            const contentDiv = button.closest('div.border').querySelector('.content');
+            button.classList.toggle('expanded');
+            contentDiv.classList.toggle('hidden');
+        }
+
+        htmx.on('htmx:afterRequest', function(evt) {
+            if (evt.detail.target.id === 'search-results') {
+                try {
+                    const response = evt.detail.xhr.response;
+                    console.log('Raw server response:', response); // Log raw response for debugging
+                    const results = JSON.parse(response);
+                    
+                    // Check if it's an error response
+                    if (results.error) {
+                        const container = document.getElementById('search-results');
+                        container.innerHTML = `
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                                ${results.error}
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Check if the response contains an `answer` field
+                    if (results.answer) {
+                        const container = document.getElementById('search-results');
+                        container.innerHTML = `
+                            <div class="border rounded-lg p-4 mb-3 hover:shadow-md transition-shadow">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Answer</h3>
+                                <p class="text-gray-600 text-sm">${results.answer}</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Handle unexpected response format
+                    console.warn('Unexpected response format:', results); // Log unexpected format
+                    const container = document.getElementById('search-results');
+                    container.innerHTML = `
+                        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+                            Unexpected response format. Please contact support.
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error parsing results:', error);
+                    const container = document.getElementById('search-results');
+                    container.innerHTML = `
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            Failed to process search results. Please try again later.
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

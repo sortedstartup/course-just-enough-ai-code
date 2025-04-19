@@ -1,0 +1,43 @@
+title: Google is an online advertising monopoly, judge rules
+
+Published on : Apr 19, 2025 02:06 AM | 4 min. read
+
+Google has illegally built “monopoly power” with its web advertising business, a federal judge in Virginia has ruled, siding with the Justice Department in a landmark case against the tech giant that could reshape the basic economics of running a modern website.
+
+The ruling that Google violated antitrust law marks the US government’s second major court victory over Google in less than a year amid claims the company has illegally monopolized key parts of the internet ecosystem, including online search. And it is the third such decision since a federal jury in December 2023 found that Google’s proprietary app store is also an illegal monopoly.
+
+Taken together, the trio of decisions highlights the breadth of trouble Google faces, raising the prospect of sweeping penalties that could reshape multiple aspects of its business, though ongoing and expected appeals will likely take years to play out.
+
+Thursday’s decision by District Judge Leonie Brinkema, of the US District Court for the Eastern District of Virginia, addresses the $31 billion portion of Google’s ad business that matches website publishers with advertisers. This “stack” of technologies determines what banner ads appear on countless sites across the web.
+
+The Justice Department’s lawsuit followed years of criticism that Google’s extensive role in the digital ecosystem that enables advertisers to place ads, and for publishers to offer up digital ad space, represented a conflict of interest that Google exploited anticompetitively.
+
+Brinkema sided with the Justice Department’s argument that by tying its ad server and publisher ad exchange together, Google was able to “establish and protect its monopoly power in these two markets, she wrote in her 115-page decision.
+
+But she also struck down one of the government’s claims related to Google’s online advertiser ad networks.
+
+“We won half of this case and we will appeal the other half,” Google’s Vice President of Regulatory Affairs Lee-Anne Mulholland said in a statement following the decision.
+
+“The Court found that our advertiser tools and our acquisitions, such as DoubleClick, don’t harm competition,” Mullholland said. “We disagree with the Court’s decision regarding our publisher tools. Publishers have many options and they choose Google because our ad tech tools are simple, affordable and effective.”
+
+The Department of Justice did not immediately respond to requests for comment.
+
+Google had argued that the Justice Department’s argument is “flawed” and would “slow innovation, raise advertising fees, and make it harder for thousands of small businesses and publishers to grow,” according to a statement from a company spokesperson after the lawsuit was filed in 2023.
+
+However, Brinkema argued in her decision that Google’s practices have deprived “rivals of the ability to compete” and “substantially harmed Google’s publisher customers, the competitive process, and, ultimately, consumers of information on the open web.”
+
+The decision could force Google to divest part of its online ad business. But the fact that the government did not win on all of its claims makes that outcome less likely, said William Kovacic, global competition professor of law and policy at The George Washington University Law School.
+
+“The general idea in other antitrust cases is that the remedy has to be proportional,” Kovacic said. “The broader the finding of illegality, the deeper the finding of deliberateness… the greater the platform for a bolder remedy.”
+
+Still, he said, Google could get stuck with a conduct remedy — such as restrictions on how it can operate or price its services — “that would not be good for them.”
+
+Some tech critics and media organizations cheered the ruling.
+
+“For years, Google wielded unchecked monopoly power over the digital advertising market – using it to suffocate the media industry and force middleman taxes on everything we buy online,” said Sacha Haworth, executive director of the Tech Oversight Project, who called the decision an “unequivocal win for the American people.”
+
+Senator Elizabeth Warren said in a statement Thursday that the decision is “a big win in the fight to break up Big Tech … the result of years of work to rein in tech companies’ abuses.”
+
+The decision is part of a wider push by regulators to check the power of large tech companies including Apple, Meta and Amazon in addition to Google parent Alphabet. Just this week, Meta CEO Mark Zuckerberg took the stand in a trial over a blockbuster antitrust lawsuit in which the US Federal Trade Commission accused the social media giant of buying would-be competitors to stifle competition.
+
+Thursday’s decision, Kovacic said, could “lend impetus” to efforts around the world to crack down on Google and other tech giants and “give them confidence to push ahead.”

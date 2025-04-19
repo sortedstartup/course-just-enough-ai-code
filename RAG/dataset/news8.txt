@@ -1,0 +1,32 @@
+title: Microsoft Releases Largest 1-Bit LLM, Letting Powerful AI Run on Some Older Hardware
+
+Published on : Apr 19, 2025 02:06 AM | 4 min. read
+
+Microsoft researchers claim to have developed the first 1-bit large language model with 2 billion parameters. The model, BitNet b1.58 2B4T, can run on commercial CPUs such as Apple’s M2.
+
+“Trained on a corpus of 4 trillion tokens, this model demonstrates how native 1-bit LLMs can achieve performance comparable to leading open-weight, full-precision models of similar size, while offering substantial advantages in computational efficiency (memory, energy, latency),” Microsoft wrote in the project’s Hugging Face depository.
+
+What makes a bitnet model different?
+Bitnets, or 1-bit LLMs, are compressed versions of large language models. The original 2-billion parameter scale model trained on a corpus of 4 billion tokens was shrunken down into a version with drastically reduced memory requirements. All weights are expressed as one of three values: -1, 0, and 1. Other LLMs might use 32-bit or 16-bit floating-point formats.
+
+SEE: Threat actors can inject malicious packages into AI models that resurface during “vibe coding.”
+
+In the research paper, which was posted on Arxiv as a work in progress, the researchers detail how they created the bitnet. Other groups have created bitnets before, but, the researchers say, most of their efforts are either post-training quantization (PTQ) methods applied to pre-trained full-precision models or native 1-bit models trained from scratch that were developed at a smaller scale in the first place. BitNet b1.58 2B4T is a native 1-bit LLM trained at scale; it only takes up 400MB, compared to other “small models” that can reach up to 4.8 GB.
+
+BitNet b1.58 2B4T model performance, purpose, and limitations
+Performance compared to other AI models
+BitNet b1.58 2B4T outperforms other 1-bit models, according to Microsoft. BitNet b1.58 2B4T has a maximum sequence length of 4096 tokens; Microsoft claims it outperforms small models like Meta’s Llama 3.2 1B or Google’s Gemma 3 1B.
+
+Researchers’ goal for this bitnet
+Microsoft’s goal is to make LLMs accessible to more people by creating versions that run on edge devices, in resource-constrained environments, or in real-time applications.
+
+However, BitNet b1.58 2B4T still isn’t simple to run; it requires hardware compatible with Microsoft’s bitnet.cpp framework. Running it on a standard transformers library won’t produce any of the benefits in terms of speed, latency, or energy consumption. BitNet b1.58 2B4T doesn’t run on GPUs, as the majority of AI models do.
+
+What’s next?
+Microsoft’s researchers plan to explore training larger, native 1-bit models (7B, 13B parameters and more).They note that most of today’s AI infrastructure lacks suitable hardware for 1-bit models, so they plan to explore “co-designing future hardware accelerators” specifically designed for compressed AI. The researchers also aim to:
+
+Increase context length.
+Improve performance on long-context chain-of-thought reasoning tasks.
+Add support for multiple languages other than English.
+Integrate 1-bit models into multimodal architectures.
+Better understand the theory behind why 1-bit training at scale produced efficiencies.

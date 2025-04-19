@@ -1,0 +1,66 @@
+title: Nvidia, caught in the US-China trade war, takes a $5.5 billion hit
+
+Published on : Apr 19, 2025 02:06 AM | 4 min. read
+
+Nvidia is caught in the middle of an escalating trade war between the world’s two largest economies.
+
+Nvidia on Tuesday said it will take a $5.5 billion financial hit after Washington placed fresh restrictions on the export of its H20 artificial intelligence chips to China, in the latest escalation of a growing battle for AI dominance.
+
+Nvidia (NVDA) slumped 6.87% Wednesday after tumbling during premarket trading. The export restrictions on Nvidia come as President Donald Trump’s tariffs are roiling global markets and raising concerns about the prospects for global economic growth.
+
+The World Trade Organization on Wednesday said its expectations for global trade this year have “deteriorated sharply” owing to the battery of new tariffs on goods and uncertainty around future trade policy.
+
+The H20 chip, released just last year, was purposefully made to accommodate stringent US export controls to China and allowed Nvidia to continue selling to the country. The model has less computing power than the more powerful H100 AI chip, which has already been banned for sale to China.
+
+“Nvidia specifically designed the H20 to comply with US exports restrictions…now the rules change and they lost $5 billion,” said Jay Hatfield, chief executive at Infrastructure Capital Advisors. “So this inconsistent trade policy is costing companies a lot of money.”
+
+The H20 is believed to have contributed to DeepSeek’s successful development of its ChatGPT-like reasoning AI model, R1, which was said to be trained at a fraction of the cost of American equivalents. The development stunned the tech industry and sparked an AI revolution in China.
+
+Nvidia said in a Tuesday regulatory filing that it was informed by the US government last week the H20 chips would now require a special license to be exported to China, which accounted for 13% of sales last year.
+
+The chipmaker said it will report approximately $5.5 billion worth of charges in its first quarter’s earnings on May 28, associated with H20 products for “inventory, purchase commitments, and related reserves.”
+
+Analysts led by Dan Ives, global head of technology research at financial services firm Wedbush Securities, said the financial impact is small relatively, but the restrictions mark a “strategic blow” for Nvidia’s efforts to continue engaging its Chinese customers.
+
+“This disclosure is a clear sign that Nvidia now has massive restrictions and hurdles in selling to China as the Trump Administration knows there is one chip and company fueling the AI Revolution and it’s Nvidia,” they said in a Tuesday research note.
+
+New export rules
+The industry-leading AI chip designer has been caught in the crossfire in recent years as the US seeks to block China’s use of American technology to advance its military and AI systems.
+
+The US Commerce Department confirmed on Tuesday it was issuing new export licensing requirements on China-related exports of Nvidia’s H20 and another American AI chipmaker AMD’s MI308 chips, as well as their equivalents, according to Reuters.
+
+“The Commerce Department is committed to acting on the President’s directive to safeguard our national and economic security,” a Commerce Department spokesperson was quoted as saying.
+
+Nvidia was told the license requirement would be in place indefinitely, the company said in the filing. It is unclear how the US government would grant the licenses. The company declined to comment beyond its filing.
+
+While the Trump administration’s imposition of curbs on the H20 chips was widely expected, the restriction was more abrupt than anticipated, analysts at Morgan Stanley said in a Wednesday note.
+
+Since DeepSeek’s R1 model shook global markets earlier this year, American lawmakers on both sides of the aisle jointly called for tighter export controls on AI chips.
+
+In the months since, China has seen an AI boom, with DeepSeek’s reveal galvanizing investment and pressure on Chinese companies to advance its AI sector. Investor confidence in the country’s tech sector has surged, driving rallies in China and Hong Kong stocks.
+
+DeepSeek, along with many of China’s established tech giants, have been major consumers of Nvidia’s H20 graphic processing units. While Chinese tech heavy weight Huawei and AI chipmaker Cambroon have developed alternatives to H20s, those China-made chips generally lag in performance, particularly in software maturity, according to Brady Wang, associate director of Counterpoint Research, a market analysis firm.
+
+The performance gap between Chinese chips and Nvidia’s is expected to widen, Wang said, because of “Nvidia’s superior ecosystem and manufacturing advantages,” even as DeepSeek’s rise demonstrates that high-performing AI models can be trained with lower-spec hardware.
+
+Tariffs will sharply reduce global and US economic growth, WTO forecasts
+The prospects for the global economy have taken a knock because of Trump’s trade war, according to a new report by the WTO.
+
+The WTO projects global economies will grow more slowly than they would without tariffs — especially in North America, a region dominated by the United States, which will see a greater slowdown than other areas.
+
+The WTO said it expects global gross domestic product to expand by 2.2% this year. That growth would be 0.6 percentage points lower than the rate it would expect in a scenario with no additional tariffs.
+
+In North America, the impact will be more severe still, with GDP growth expected to be 1.6 percentage points below what it would be otherwise.
+
+More trade restrictions coming
+With the escalation of an aggressive trade war between the US and China, Ives said further restrictions may be coming.
+
+“While the Nvidia news is concerning, it’s not a shock as we are in the middle of a trade war between the US and China and expect more punches thrown by both sides,” he said.
+
+In 2022, President Joe Biden began curbing the sale of advanced semiconductors from chipmakers like Nvidia to China over concerns that they could power its military. The controls have subsequently expanded to include restrictions on sales of chipmaking equipment, high-bandwidth memory chips and products manufactured outside the US using American technology in order to limit China’s technological progress.
+
+Before Biden stepped down, his administration also broadened the geographic scope of those restrictions, unveiling a global export framework that subjects countries to different restrictions in a bid to prevent advanced AI technology from getting into the hands of adversaries like China through third countries. The new rules are expected to take effect next month.
+
+The series of restrictions have come under repeated criticism from US tech giants, particularly Nvidia, which says they will undercut US competitiveness.
+
+Ned Finkle, Nvidia’s vice president of government affairs, wrote in a company blog post that the adoption of AI around the world fuels growth and opportunity for industries at home and abroad. But the restrictions put that global progress “in jeopardy” and threatened to “derail innovation and economic growth worldwide,” he said.

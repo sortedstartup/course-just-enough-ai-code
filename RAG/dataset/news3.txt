@@ -1,0 +1,46 @@
+title: Gensol saga: How Jaggi brothers squandered borrowed money, killed BluSmart
+
+Published on : Apr 19, 2025 02:06 AM4 min. read
+
+BluSmart was seen as one of the few startups that actually kept its promises, at least to its riders. A cab always showed up. It was electric. It was clean with a courteous driver. And it was on time. For a while, it looked like the poster child for India’s EV mobility dream.
+
+But behind the smooth rides and sleek PR, something was quietly breaking down. And no, it wasn’t the battery.
+
+Sebi’s (Securities and Exchange Board of India) interim order exposed how the Jaggi brothers may have taken investors for a ride, not in an EV, but in a web of financial mismanagement.
+
+Gensol Engineering, a company they controlled, appears to have bled BluSmart dry, eventually forcing it to pull the plug on its operations.
+
+Sebi, in its interim order released on April 15, pointed to several serious problems in how Gensol was run. The findings included misuse of borrowed money for personal use, poor financial controls, and complete failure in following proper business practices.
+
+Let’s look at how BluSmart rose quickly and then came crashing down.
+
+FROM RISING STARTUP TO COLLAPSE
+BluSmart Mobility started in January 2019 in Gurugram. It was founded by Anmol Singh, Punit K Goyal, and Puneet Singh Jaggi. The company got off to a good start with $3 million in angel funding from big names like Hero MotoCorp, Jito Angel Network, Micromax, and the office of actor Deepika Padukone.
+
+Over the next few years, BluSmart launched services like hourly rentals and in-app wallets. In 2021, it tied up with Tata Motors and Jio-BP to grow its EV fleet and charging stations.
+
+In 2022 and 2023, the company raised large amounts of money. It received $25 million in May 2022 and $42 million in May 2023. A large part of the 2023 round came from its existing investors. Mayfield India, a venture capital fund, exited around the same time, selling its stake for Rs 32 crore to CEO Jaggi.
+
+The startup kept expanding, even launching operations in Bengaluru in 2022. By September 2023, it had 5,000 EVs and 3,900 charging stations. It claimed to have crossed an annual revenue run rate of Rs 400 crore. In January 2024, it raised Rs 25 million more from a Swiss climate finance firm, ResponsAbility, to build EV charging infrastructure.
+
+By February 2024, BluSmart announced plans to use solar energy from Tata Power for its 6,000 electric cabs. Just two months later, in April, the company reported revenue of Rs 390 crore for FY24, up from Rs 160 crore the previous year. In July, it raised another Rs 200 crore.
+
+Things started to change in March 2025 when reports said that Uber was in early talks to acquire BluSmart. This was around the same time that Gensol Engineering, the EV supplier and leasing partner to BluSmart, began facing money problems.
+
+SEBI UNCOVERS MISUSE OF FUNDS AT GENSOL
+On April 15, 2025, Sebi released a detailed interim order showing what went wrong at Gensol. The order said the promoters of Gensol, including Anmol and Puneet Singh Jaggi, had treated the company like their personal 'piggy bank'. There were no proper financial controls in place, and the promoters had diverted loan money to themselves or related entities.
+
+The loans, worth Rs 978 crore, were taken from government organisations like IREDA and PFC. These loans were supposed to be used for buying EVs. Instead, over Rs 200 crore was routed through a car dealership and sent to other companies linked to the promoters. Some of the money was used for luxury purchases, including flats in DLF Camellias, where the price of a single apartment starts at Rs 70 crore.
+
+Sebi said these wrongdoings could lead to major financial losses for shareholders. Because of the fund misuse, even Gensol’s proposed stock split was put on hold.
+
+In response, Gensol said it had received Sebi’s order and would follow the directions. It confirmed that the two Jaggi brothers were no longer part of the company’s management. Anmol Singh Jaggi and Puneet Singh Jaggi stepped down from their roles, and Arun Menon resigned as Independent Director the next day, sighting debt position of the company.
+
+IMPACT ON BLUSMART
+The fall of Gensol hit BluSmart directly. Most of BluSmart’s electric fleet was owned by Gensol and leased to BluSmart. Without proper funding and management, BluSmart’s operations began to suffer.
+
+By April 17, 2025, BluSmart had started shutting down its services. Users in Delhi-NCR, Mumbai, and Bengaluru reported being unable to book rides on the app. The company sent messages saying it had “temporarily closed bookings” and would issue refunds within 90 days if services did not resume.
+
+On April 18, two more Independent Directors, Harsh Singh and Kuljit Singh Popli, resigned from the board.
+
+BluSmart’s plan to pivot and become a fleet supplier for Uber also appears uncertain. Its ride-hailing business now appears shut down, and the trust it had built among users may not be easy to win back.
