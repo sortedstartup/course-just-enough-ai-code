@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognizer</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+            width: 280px;  /* Display size */
+            height: 280px; /* Display size */
+        }
+        #controls {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Draw a Digit</h1>
+    <canvas id="drawingCanvas" width="28" height="28"></canvas>
+    <div id="controls">
+        <button hx-post="/predict" hx-trigger="click" hx-target="#result" hx-include="#drawingCanvas">Predict</button>
+        <button onclick="clearCanvas()">Clear</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let drawing = false;
+
+        canvas.addEventListener('mousedown', () => drawing = true);
+        canvas.addEventListener('mouseup', () => drawing = false);
+        canvas.addEventListener('mousemove', draw);
+
+        function draw(event) {
+            if (!drawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((event.clientX - rect.left) * (28/rect.width));
+            const y = Math.floor((event.clientY - rect.top) * (28/rect.height));
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x, y, 1, 1);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Convert canvas to base64 image data for HTMX
+        document.addEventListener('htmx:configRequest', (event) => {
+            const imageData = ctx.getImageData(0, 0, 28, 28);
+            const pixels = Array.from(imageData.data)
+                .filter((_, i) => i % 4 === 3)  // Get alpha channel only
+                .map(v => v / 255.0);           // Normalize to [0,1]
+            event.detail.parameters.pixels = JSON.stringify(pixels);
+        });
+    </script>
+</body>
+</html>

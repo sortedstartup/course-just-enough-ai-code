@@ -31,13 +31,18 @@ import datetime
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-# Build the model
+# Build the model with explicit names
 model = models.Sequential([
-    layers.Input(shape=INPUT_SHAPE),
-    layers.Dense(HIDDEN_LAYER_1_UNITS, activation='relu'),
-    layers.Dense(HIDDEN_LAYER_2_UNITS, activation='relu'),
-    layers.Dense(OUTPUT_UNITS, activation='softmax')
+    layers.Input(shape=INPUT_SHAPE, name='input_layer'),
+    layers.Dense(HIDDEN_LAYER_1_UNITS, activation='relu', name='dense_1'),
+    layers.Dense(HIDDEN_LAYER_2_UNITS, activation='relu', name='dense_2'),
+    layers.Dense(OUTPUT_UNITS, activation='softmax', name='output')
 ])
+
+# Add serving signature
+@tf.function(input_signature=[tf.TensorSpec([None, 784], tf.float32)])
+def serving_fn(input_tensor):
+    return {'output': model(input_tensor)}
 
 # Compile the model
 optimizer = tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE)
@@ -53,10 +58,11 @@ model.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE, validation_dat
 test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
 print("\nTest accuracy:", test_acc)
 
-# Save the trained model in TensorFlow SavedModel format for serving
+
+# Save the model properly for TensorFlow Serving (Keras 3 way)
 os.makedirs(os.path.dirname(MODEL_SAVE_PATH), exist_ok=True)
-tf.saved_model.save(model, MODEL_SAVE_PATH)
-print(f"Model saved at {MODEL_SAVE_PATH}")
+model.export(MODEL_SAVE_PATH)
+print(f"Model exported at {MODEL_SAVE_PATH}")
 
 # Instructions to launch TensorBoard
 print("Run the following command in terminal to view TensorBoard:")
