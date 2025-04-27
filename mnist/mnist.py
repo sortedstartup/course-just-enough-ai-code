@@ -5,7 +5,7 @@ import os
 
 # Hyperparameters
 INPUT_SHAPE = (28 * 28,)
-HIDDEN_LAYER_1_UNITS = 128
+HIDDEN_LAYER_1_UNITS = 10
 HIDDEN_LAYER_2_UNITS = 64
 OUTPUT_UNITS = 10
 LEARNING_RATE = 0.001
@@ -36,7 +36,7 @@ model = models.Sequential([
     layers.Input(shape=INPUT_SHAPE, name='input_layer'),
     layers.Dense(HIDDEN_LAYER_1_UNITS, activation='relu', name='dense_1'),
     layers.Dense(HIDDEN_LAYER_2_UNITS, activation='relu', name='dense_2'),
-    layers.Dense(OUTPUT_UNITS, activation='softmax', name='output')
+    layers.Dense(OUTPUT_UNITS, activation='softmax', name='output') 
 ])
 
 # Add serving signature
@@ -51,13 +51,13 @@ model.compile(optimizer=optimizer,
               metrics=['accuracy'])
 
 # Train the model with TensorBoard callback
+# 60,000 images -> 60,000 back propagation
 model.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE, validation_data=(x_test, y_test),
           callbacks=[tensorboard_callback])
 
 # Evaluate the model on test data
 test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
 print("\nTest accuracy:", test_acc)
-
 
 # Save the model properly for TensorFlow Serving (Keras 3 way)
 os.makedirs(os.path.dirname(MODEL_SAVE_PATH), exist_ok=True)

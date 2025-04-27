@@ -25,11 +25,11 @@ app.post('/predict', async (req, res) => {
     
     // Send to TensorFlow Serving with correct input format
     const response = await axios.post(TENSORFLOW_SERVING_URL, {
-      inputs: pixels  // Changed from instances to inputs
+      instances: [pixels]  // Wrap pixels in an array to create batch dimension
     });
 
-    // Updated response handling
-    const predictions = response.data.outputs.predictions[0];
+    // Get predictions from response
+    const predictions = response.data.predictions[0];
     const predictedDigit = predictions.indexOf(Math.max(...predictions));
 
     console.log('Predicted digit:', predictedDigit);
