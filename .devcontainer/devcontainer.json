@@ -6,7 +6,9 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "cweijan.vscode-postgresql-client2"
+                "cweijan.vscode-postgresql-client2",
+                "ms-python.python",
+                "ms-toolsai.jupyter"
             ]
         }
     },
