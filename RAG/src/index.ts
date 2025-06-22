@@ -73,6 +73,7 @@ app.get('/search', async (c) => {
     try {
         const query = c.req.query('query')
         const useOllama = c.req.query('use-ollama') === 'on'
+    
         
         if (!query) {
             return c.json({ error: 'Query parameter is required' }, 400)
@@ -138,45 +139,47 @@ app.get('/search', async (c) => {
                 1 - (${embeddingField} <=> $1::vector) as similarity_score
             FROM documents
             WHERE ${embeddingField} IS NOT NULL
+             AND (1 - (${embeddingField} <=> $1::vector)) > 0.5
             ORDER BY ${embeddingField} <=> $1::vector
             LIMIT 2
         `
         const results = await pool.query(searchQuery, [queryEmbedding])
+
 
         if (results.rows.length < 2) {
             return c.json({ error: 'Not enough documents found for RAG' }, 400)
         }
 
         // Extract the top 2 documents
+        const doc1Name = results.rows[0].title
         const doc1 = results.rows[0].content
+        const doc2Name = results.rows[1].title
         const doc2 = results.rows[1].content
 
         // Create the prompt
         const prompt = `
-I am providing you as context these documents below,
-The documents have a structure like this
 
-start doc 1:
-..
-end doc
+Here are all the documents
+docs = {[
+ {
+   "name":"${doc1Name}",
+   "content":"${doc1}",
+  },
+  {
+   "name":"${doc2Name}",
+   "content":"${doc2}"
+}]
+}
 
-Note:
-Make sure you answer the questions only from the documents below, dont answer from your training data, be grounded in these documents only.
-If you do not know the answer say "The answer is not present in any of the documents"
+Answer this question, think step by step : 
+  - "${query}"
 
-Here are all the documents - 
-start doc 1:
-${doc1}
-end doc
-
-start doc 2:
-${doc2}
-end doc
-
-
-Now answer the question based on these documents
-based on these documents
-answer this question : "${query}"
+your question answering style -
+ - Answer the question based on the documents provided
+ - Answer in concise bullet points and table format 
+ - Use concise language, be to the point
+ - Make sure you answer the questions only from the documents , dont answer from your training data, be grounded in these documents only.
+   If answer is not in provided documents stop IMMEDIATELY with this message - "The answer is not present in any of the documents"
 `
 
         console.log('Prompt sent to LLM:', prompt) // Log the prompt
@@ -212,15 +215,15 @@ answer this question : "${query}"
                 return c.json({ error: 'AI response was invalid or incomplete' }, 500)
             }
             
-            // Replace \n with <br/>
-            answer = answer.replace(/\n/g, '<br/>')
-            
-            // Return the answer
-            return c.json({ answer })
+            // Return the answer with matched document names
+            return c.json({ 
+                answer,
+                matched_documents: [doc1Name, doc2Name]
+            })
         } else {
-            // Use Cloudflare for generation (existing code)
+            // Use Cloudflare for generation (existing code)llama-3.3-70b-instruct-fp8-fast
             const answerResponse = await fetch(
-                `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/llama-4-scout-17b-16e-instruct`,
+                `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/meta/llama-3.3-70b-instruct-fp8-fast`,
                 {
                     method: 'POST',
                     headers: {
@@ -246,12 +249,14 @@ answer this question : "${query}"
                 return c.json({ error: 'AI response was invalid or incomplete' }, 500)
             }
 
-            // Replace \n with <br/>
-            answer = answer.replace(/\n/g, '<br/>')
-
-            // Return the answer
-            return c.json({ answer })
+            // Return the answer with matched document names
+            return c.json({ 
+                answer,
+                matched_documents: [doc1Name, doc2Name]
+            })
         }
+
+        
     } catch (error) {
         console.error('Search error:', error)
         return c.json({ error: 'Search failed' }, 500)
@@ -306,7 +311,7 @@ app.post('/generate_embeddings', async (c) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: "nomic-embed-text",
+                    model: "nomic-embed-text",  
                     prompt: content
                 })
             })
